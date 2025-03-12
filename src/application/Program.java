@@ -18,7 +18,6 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Order order = new Order();
 		
 		System.out.println("Enter client data:");
 		System.out.print("Name: ");
@@ -35,6 +34,7 @@ public class Program {
 		System.out.print("How many items to this order? ");
 		int n = sc.nextInt();
 		OrderStatus orderStatus = OrderStatus.valueOf(status.toUpperCase());
+		Order order = new Order(new Date(), orderStatus, client);;
 		
 		for (int i = 1; i <=n; i++) {
 			System.out.printf("Enter #%d item data:\n", i);
@@ -50,6 +50,8 @@ public class Program {
 			OrderItem orderItem = new OrderItem(quantity, pPrice, product);
 			order.addItem(orderItem);
 		}
+		
+		System.out.println(order);
 		
 		sc.close();
 	}
